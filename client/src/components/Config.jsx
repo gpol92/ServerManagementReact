@@ -3,7 +3,9 @@ import axios from 'axios';
 
 function Config() {
     const [servers, setServers] = useState([])
-
+    const handleDelete = () => {
+        axios.delete("http://localhost:3000/deleteServer")
+    }
     useEffect(() => {
     axios.get("http://localhost:3000/getServers")
       .then(response => {
@@ -23,7 +25,7 @@ function Config() {
                 <h3>{server.nome}</h3>
                 <h3>{server.indirizzoIP}</h3>
                 <h3>{server.isOnline ? '🟢Online' : '🔴Offline'}</h3>
-                <button>Cancella</button><br></br>
+                <button onClick={handleDelete}>Cancella</button><br></br>
                 <button>Test singolo</button>
             </li>
             ))}

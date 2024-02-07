@@ -35,6 +35,8 @@ app.post("/addServer", async (req, res) => {
         res.status(500).send("Error", error)
     }
 })
+
+app.delete()
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 })
