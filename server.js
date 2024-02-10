@@ -1,42 +1,25 @@
-const express = require("express");
-const app = express();
-const PORT = 3000;
+require('dotenv').config()
 
-const mongoose = require('mongoose')
-mongoose.connect("mongodb://localhost:27017/ServerList");
+const express = require('express');
+const mongoose = require('mongoose');
+const serversRoute = require('./routes/servers');
 
-const S3rver = require('./models/Server')
+const app = express()
 
-app.use(express.json())
-app.get("/getServers", async (req, res)=> {
-    try {
-        const servers = await S3rver.find()
-        console.log(servers);
-        res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173")
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        res.json(servers);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send("Error");
-    }
+app.use(express.json());
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next();
 })
 
-app.post("/addServer", async (req, res) => {
-    try {
-        const {nome, indirizzoIP, isOnline} = req.body;
-        const server = {
-            nome: nome,
-            ip: indirizzoIP,
-            isOnline: isOnline,
-        }
-        new S3rver(server);
-    } catch (error) {
+app.use('/api/servers', serversRoute);
+
+mongoose.connect(process.env.MONG_URI)
+    .then(()=>{
+        app.listen(process.env.PORT, () => {
+            console.log("Connected to db & running on port", process.env.PORT);
+        })
+    })
+    .catch((error) => {
         console.error(error)
-        res.status(500).send("Error", error)
-    }
-})
-
-app.delete()
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
-})
+    })
