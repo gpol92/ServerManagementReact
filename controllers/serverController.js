@@ -29,8 +29,42 @@ const createServer = async (req, res) => {
     }
 }
 
+const deleteServer = async (req, res) => {
+    const { id } = req.params;
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such server"})
+    }
+
+    const server = await S3rver.findOneAndDelete({_id: id})
+
+    if (!server) {
+        return res.status(400).json({error: "No such server"})
+    }
+
+    res.status(200).json(server);
+}
+
+const updateServer = async (req, res) => {
+    const { id } = req.params
+
+    if(!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: "No such server"})
+    }
+
+    const server = await S3rver.findOneAndUpdate({_id: id}, {...req.body})
+
+    if (!server) {
+        return res.status(400).json({error: "No such server"})
+    }
+
+    res.status(200).json(server);
+}
+
 module.exports = {
     createServer,
     getServers,
-    getServer
+    getServer,
+    deleteServer,
+    updateServer
 }

@@ -1,22 +1,17 @@
 const express = require('express');
 const {
-    createServer, getServers, getServer
+    createServer, getServers, getServer, deleteServer, updateServer
 } = require('../controllers/serverController')
 const router = express.Router();
 
 router.get('/', getServers);
 
-
 router.get('/:id', getServer);
 
 router.post('/', createServer); 
 
-router.delete('/:id', (req, res) => {
-    res.json({msg: "DELETE a server"})
-})
+router.delete('/:id', deleteServer)
 
-router.patch('/:id', (req, res) => {
-    res.json({msg: "UPDATE a server"})
-})
+router.patch('/:id', updateServer)
 
 module.exports = router;
