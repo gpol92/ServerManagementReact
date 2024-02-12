@@ -2,6 +2,8 @@ import { useState } from "react"
 import { useServersContext } from '../hooks/useServersContext'
 
 const ServerForm = () => {
+    const { dispatch } = useServersContext()
+
     const [nome, setNome] = useState('')
     const [indirizzoIP, setIndirizzoIP] = useState('')
     const [isOnline, setIsOnline] = useState(false);
@@ -30,6 +32,7 @@ const ServerForm = () => {
             setIsOnline(false)
             setError(null)
             console.log("New server added", json)
+            dispatch({type: "CREATE_SERVER", payload: json})
         }
     }
     return (

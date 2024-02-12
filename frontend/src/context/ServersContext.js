@@ -12,6 +12,10 @@ export const serversReducer = (state, action) => {
             return {
                 servers: [action.payload, ...state.servers]
             }
+        case 'DELETE_SERVER':
+            return {
+                servers: state.servers.filter((s)=> s._id !== action.payload._id)
+            }
         default: 
             return state
     }
