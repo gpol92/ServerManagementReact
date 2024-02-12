@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import ServerDetails from '../components/ServerDetails';
 import ServerForm from '../components/ServerForm';
+import { useServersContext } from '../hooks/useServersContext'
 
 const Home = () => {
-    const [servers, setServers] = useState([])
+    const { servers, dispatch } = useServersContext()
     useEffect(() => {
         const fetchServers = () => {
             fetch('/api/servers')
-            .then(response => response.json().then(data=>setServers(data)))
+            .then(response => response.json().then(data=>dispatch({type: "SET_SERVERS", payload: data})))
             .catch((error) => {
                 console.log(error)
             }
