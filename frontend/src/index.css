@@ -20,7 +20,17 @@ header .container {
   align-items: center;
   justify-content: space-between;
 }
-
+header .Ping {
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  position: fixed;
+  top: 7px;
+  right: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 header a {
   color: #333;
   text-decoration: none;
