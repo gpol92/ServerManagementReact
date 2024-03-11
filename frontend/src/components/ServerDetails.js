@@ -1,10 +1,12 @@
 import { useServersContext } from "../hooks/useServersContext";
-
+import axios from 'axios'
 const ServerDetails = ( {server }) => {
     const { dispatch } = useServersContext()
     
     const handlePing = async () => {
-        console.log("Pinging")
+        axios.get('http://'+ server.indirizzoIP)
+        .then(response => console.log(response))
+        .catch(error => console.error(error));
     }
     const handleClick = async () => {
         const response = await fetch('/api/servers/' + server._id, {
@@ -20,7 +22,7 @@ const ServerDetails = ( {server }) => {
             <h4>{server.nome}</h4>
             <h5>{server.indirizzoIP}</h5>
             {server.isOnline ? <h5>🟢 Online</h5> : <h5>🔴 Offline</h5>}
-            <button onClick={handlePing}>Ping</button>
+            <button className="pingButton" onClick={handlePing}>Ping</button>
             <span onClick={handleClick}>Cancella</span>
         </div>
     )

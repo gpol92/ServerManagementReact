@@ -85,3 +85,11 @@ form button {
   border-radius: 50%;
   color: #333;
 }
+
+.pingButton {
+  background: var(--primary);
+  border: 0;
+  border-radius: 4px;
+  color: #fff;
+  padding: 10px;
+}
