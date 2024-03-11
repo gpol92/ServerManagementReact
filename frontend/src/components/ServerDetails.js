@@ -1,8 +1,7 @@
 import { useServersContext } from "../hooks/useServersContext";
 import axios from 'axios'
 const ServerDetails = ( {server }) => {
-    const { dispatch } = useServersContext()
-    
+    const { dispatch } = useServersContext()    
     const handlePing = async () => {
         axios.get('http://'+ server.indirizzoIP)
         .then(response => console.log(response))
