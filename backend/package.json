@@ -4,10 +4,12 @@
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
     "mongoose": "^8.0.3",
-    "nodemon": "^3.0.2"
+    "nodemon": "^3.0.2",
+    "ping": "^0.4.4"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "build": "build"
   },
   "name": "r34ct",
   "version": "1.0.0",

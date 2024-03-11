@@ -20,7 +20,17 @@ header .container {
   align-items: center;
   justify-content: space-between;
 }
-
+header .Ping {
+  background: var(--primary);
+  color: #fff;
+  border: 0;
+  position: fixed;
+  top: 7px;
+  right: 15px;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
 header a {
   color: #333;
   text-decoration: none;
@@ -84,12 +94,4 @@ form button {
   padding: 6px;
   border-radius: 50%;
   color: #333;
-}
-
-.pingButton {
-  background: var(--primary);
-  border: 0;
-  border-radius: 4px;
-  color: #fff;
-  padding: 10px;
 }

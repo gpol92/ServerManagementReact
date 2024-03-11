@@ -14,7 +14,7 @@ const Home = () => {
             }
         )}
         fetchServers()
-    }, [])
+    })
     return (
         <div className="Home">
             <div className="servers">

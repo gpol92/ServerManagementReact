@@ -1,8 +1,10 @@
 const express = require('express');
 const {
-    createServer, getServers, getServer, deleteServer, updateServer
+    pingServers, createServer, getServers, getServer, deleteServer, updateServer
 } = require('../controllers/serverController')
 const router = express.Router();
+
+router.get('/ping', pingServers)
 
 router.get('/', getServers);
 
